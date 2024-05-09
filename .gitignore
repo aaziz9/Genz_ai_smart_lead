@@ -1,0 +1,20 @@
+# PyCharm
+.idea/
+*.iml
+
+# JupyterLab
+.jupyterlab-config/
+
+# VS Code
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+
+# Microsoft Office temporary files
+~$*
