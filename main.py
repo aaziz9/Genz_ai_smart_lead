@@ -1,6 +1,8 @@
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 
+from models.account_model import Account
+
 app = FastAPI(
     title="GenZ Co-Pilot Plugin API",
     description="Allows co-pilot to fetch ",
@@ -30,51 +32,97 @@ v1_router = APIRouter()
                summary="Get all lead accounts information.",
                description="Get information of all lead accounts. This includes information such as expected revenue, "
                            "owner info and score")
-def get_lead_account_info():
-    return [
-        {
-            "Opportunity Name": "wonder_1",
-            "Expected Revenue": "OMR 20000",
-            "Opportunity Owner": {
-                "Name": "Mr.A",
-                "ID": "abcdef"
-            },
-            "Opportunity Type": "New Business",
-            "Account": {
-                "Number": "12345",
-                "Name": "Omantel"
-            },
-            "Sector": "Financial",
-            "Status": "Qualification",
-            "Probability": 0,
-            "Score": 50,
-            "Created By": {
-                "UserID": "l8520020",
-                "Date": "24 Jul 2023"
-            }
+def get_lead_account_info() -> list[Account]:
+    user_account_1: Account = Account(**{
+        "opportunity_name": "wonder_1",
+        "expected_revenue": "OMR 20000",
+        "opportunity_owner": {
+            "name": "Mr.A",
+            "id": "abcdef"
         },
-        {
-            "Opportunity Name": "wonder_2",
-            "Expected Revenue": "OMR 10000",
-            "Opportunity Owner": {
-                "Name": "Mr.B",
-                "ID": "ghijkl"
-            },
-            "Opportunity Type": "New Business",
-            "Account": {
-                "Number": "67890",
-                "Name": "Omantel"
-            },
-            "Sector": "Financial",
-            "Status": "Qualification",
-            "Probability": 0,
-            "Score": 80,
-            "Created By": {
-                "UserID": "l8520020",
-                "Date": "24 Jul 2023"
-            }
+        "opportunity_type": "New Business",
+        "account": {
+            "number": "12345",
+            "name": "Omantel"
+        },
+        "sector": "Financial",
+        "status": "Qualification",
+        "probability": 0,
+        "score": 50,
+        "created_by": {
+            "user_id": "l8520020",
+            "date": "24 Jul 2023"
         }
-    ]
+    })
+
+    user_account_2: Account = Account(**{
+        "opportunity_name": "wonder_2",
+        "expected_revenue": "OMR 1000",
+        "opportunity_owner": {
+            "name": "Mr.B",
+            "id": "efghij"
+        },
+        "opportunity_type": "Old Business",
+        "account": {
+            "number": "67890",
+            "name": "Omantel"
+        },
+        "sector": "Financial",
+        "status": "Qualification",
+        "probability": 0,
+        "score": 80,
+        "created_by": {
+            "user_id": "l1120021",
+            "date": "24 Mar 2023"
+        }
+    })
+
+    # return [
+    #     {
+    #         "Opportunity Name": "wonder_1",
+    #         "Expected Revenue": "OMR 20000",
+    #         "Opportunity Owner": {
+    #             "Name": "Mr.A",
+    #             "ID": "abcdef"
+    #         },
+    #         "Opportunity Type": "New Business",
+    #         "Account": {
+    #             "Number": "12345",
+    #             "Name": "Omantel"
+    #         },
+    #         "Sector": "Financial",
+    #         "Status": "Qualification",
+    #         "Probability": 0,
+    #         "Score": 50,
+    #         "Created By": {
+    #             "UserID": "l8520020",
+    #             "Date": "24 Jul 2023"
+    #         }
+    #     },
+    #     {
+    #         "Opportunity Name": "wonder_2",
+    #         "Expected Revenue": "OMR 10000",
+    #         "Opportunity Owner": {
+    #             "Name": "Mr.B",
+    #             "ID": "ghijkl"
+    #         },
+    #         "Opportunity Type": "New Business",
+    #         "Account": {
+    #             "Number": "67890",
+    #             "Name": "Omantel"
+    #         },
+    #         "Sector": "Financial",
+    #         "Status": "Qualification",
+    #         "Probability": 0,
+    #         "Score": 80,
+    #         "Created By": {
+    #             "UserID": "l8520020",
+    #             "Date": "24 Jul 2023"
+    #         }
+    #     }
+    # ]
+
+    return [user_account_1, user_account_2]
 
 
 @v1_router.get(path="/accounts/{account_no}",
