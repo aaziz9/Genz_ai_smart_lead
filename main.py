@@ -77,51 +77,6 @@ def get_lead_account_info() -> list[Account]:
         }
     })
 
-    # return [
-    #     {
-    #         "Opportunity Name": "wonder_1",
-    #         "Expected Revenue": "OMR 20000",
-    #         "Opportunity Owner": {
-    #             "Name": "Mr.A",
-    #             "ID": "abcdef"
-    #         },
-    #         "Opportunity Type": "New Business",
-    #         "Account": {
-    #             "Number": "12345",
-    #             "Name": "Omantel"
-    #         },
-    #         "Sector": "Financial",
-    #         "Status": "Qualification",
-    #         "Probability": 0,
-    #         "Score": 50,
-    #         "Created By": {
-    #             "UserID": "l8520020",
-    #             "Date": "24 Jul 2023"
-    #         }
-    #     },
-    #     {
-    #         "Opportunity Name": "wonder_2",
-    #         "Expected Revenue": "OMR 10000",
-    #         "Opportunity Owner": {
-    #             "Name": "Mr.B",
-    #             "ID": "ghijkl"
-    #         },
-    #         "Opportunity Type": "New Business",
-    #         "Account": {
-    #             "Number": "67890",
-    #             "Name": "Omantel"
-    #         },
-    #         "Sector": "Financial",
-    #         "Status": "Qualification",
-    #         "Probability": 0,
-    #         "Score": 80,
-    #         "Created By": {
-    #             "UserID": "l8520020",
-    #             "Date": "24 Jul 2023"
-    #         }
-    #     }
-    # ]
-
     return [user_account_1, user_account_2]
 
 
