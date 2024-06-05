@@ -1,39 +1,18 @@
-from fastapi import FastAPI, APIRouter
-from fastapi.middleware.cors import CORSMiddleware
+from __future__ import annotations
+
+from fastapi import APIRouter
 
 from models.account_model import Account
 
-app = FastAPI(
-    title="GenZ Co-Pilot Plugin API",
-    description="Allows co-pilot to fetch ",
-    version="1.0.0",
-    servers=[
-        {
-            "url": "http://localhost:8000",
-            "description": "GenZ Co-pilot Plugin API that can response with lead account information"
-        },
-    ]
-)
 
-# Add the CORS middleware to the application
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # List of allowed origins
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
-)
+v1_account_router = APIRouter()
 
 
-v1_router = APIRouter()
-
-
-@v1_router.get(path="/accounts",
-               summary="Get all lead accounts information.",
-               description="Get information of all lead accounts. This includes information such as expected revenue, "
-                           "owner info and score",
-               response_model=list[Account])
-def get_lead_account_info():
+@v1_account_router.get(path="/",
+                       summary="Get all lead accounts information.",
+                       description="Get information of all lead accounts. This includes information such as "
+                                   "expected revenue, owner info and score")
+def get_lead_account_info() -> list[Account]:
     user_account_1: Account = Account(**{
         "opportunity_name": "wonder_1",
         "expected_revenue": "OMR 20000",
@@ -81,12 +60,11 @@ def get_lead_account_info():
     return [user_account_1, user_account_2]
 
 
-@v1_router.get(path="/accounts/{account_no}",
-               summary="Get a specific lead account information",
-               description="Based on an account number, fetch the information such as expected revenue, "
-                           "owner info and score",
-               response_model=Account)
-def get_lead_account_info(account_no: int):
+@v1_account_router.get(path="/{account_no}",
+                       summary="Get a specific lead account information",
+                       description="Based on an account number, fetch the information such as expected revenue, "
+                                   "owner info and score")
+def get_lead_account_info(account_no: int) -> Account:
     """
     Get specific account details.
     :param account_no: The unique identifier for the account
@@ -113,7 +91,3 @@ def get_lead_account_info(account_no: int):
             "date": "24 Mar 2023"
         }
     })
-
-
-# Routers
-app.include_router(v1_router, prefix="/api/v1")

@@ -9,9 +9,9 @@ Follow these instructions to set up and run the application on your local machin
 ### Prerequisites
 
 Ensure you have the following installed:
-- Git
+- git
 - Python >= 3.8
-- pip
+- pip3
 - virtualenv
 
 ### Installation
@@ -35,7 +35,7 @@ Ensure you have the following installed:
     pip install -r requirements.txt
 5. **Run the server application**
     ```bash
-    fastapi dev main.py
+    fastapi dev main_app.py
 **Once the application is running, you can test the API in your browser by navigating to:**
 
 http://127.0.0.1:8000/docs
