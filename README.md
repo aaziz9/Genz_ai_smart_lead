@@ -9,9 +9,9 @@ Follow these instructions to set up and run the application on your local machin
 ### Prerequisites
 
 Ensure you have the following installed:
-- Git
+- git
 - Python >= 3.8
-- pip
+- pip3
 - virtualenv
 
 ### Installation
